@@ -2,6 +2,8 @@ INSTALLED_APPS = [
     ...
     'django_cron',
     'django_celery_beat',
+    'django_crontab',
+
 ]
 
 # Celery Configuration
@@ -27,4 +29,6 @@ LOGGING = {
 }
 CRONJOBS = [
     ('0 8 * * *', 'crm.cron.LogCRMHeartbeat'),
+     ('0 8 * * *', 'crm.cron.update_low_stock'),
+   
 ]

@@ -19,5 +19,13 @@ def clean_inactive_customers_task(self):
     except Exception as e:
         logger.error(f"Error while cleaning inactive customers: {str(e)}")
         raise self.retry(exc=e)
+from celery import shared_task
+from datetime import datetime
+
+@shared_task
+def generate_crm_report():
+    with open("/tmp/crmreportlog.txt", "a") as f:
+        f.write(f"{datetime.now()}: CRM report generated.\n")
+    return "Report generated"
 
 
