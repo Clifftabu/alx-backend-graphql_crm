@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Navigate to the Django project root
-cd "/mnt/c/Users/cliff/OneDrive - Strathmore University/Documents/ALX Prodev Back End Web Dev Program/Github Repos/alx-backend-graphql_crm"
+# Get the directory of the current script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Navigate to project root (two levels up from crm/cron_jobs)
+cd "$DIR/../.."
 
 # Activate the virtual environment
 source venv/bin/activate
@@ -20,4 +23,4 @@ print(count)
 ")
 
 # Log result with timestamp
-echo "$(date): Deleted $deleted_count inactive customers" >> /tmp/customer_cleanup_log.txt
+echo \"\$(date): Deleted \$deleted_count inactive customers\" >> /tmp/customer_cleanup_log.txt
