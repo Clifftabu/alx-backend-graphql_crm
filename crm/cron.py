@@ -2,6 +2,16 @@ from datetime import timedelta
 from django.utils import timezone
 from django_cron import CronJobBase, Schedule
 from crm.models import Customer
+from datetime import datetime
+
+class LogCRMHeartbeat(CronJobBase):
+    schedule = Schedule(run_every_mins=5)
+    code = 'crm.log_crm_heartbeat'
+
+    def do(self):
+        with open("/tmp/crm_heartbeat_log.txt", "a") as f:
+            f.write(f"{datetime.now()}: CRM Heartbeat OK\n")
+
 
 class CleanInactiveCustomersCronJob(CronJobBase):
     schedule = Schedule(run_every_mins=60*24)  # runs daily

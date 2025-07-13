@@ -25,3 +25,6 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+CRONJOBS = [
+    ('0 8 * * *', 'crm.cron.LogCRMHeartbeat'),
+]
